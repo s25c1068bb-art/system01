@@ -1,25 +1,51 @@
-# system01.py
-# 冷蔵庫の材料から料理を提案するコマンド
+#!/usr/bin/env python3
 
-ingredients = input("材料を入力してください: ")
+# SPDX-FileCopyrightText: 2026 Yuudai
+# SPDX-License-Identifier: BSD-3-Clause
 
-ingredients = ingredients.replace("、", " ")
-items = ingredients.split()
+import sys
 
-if "卵" in items and "ご飯" in items:
-    print("おすすめ料理: チャーハン")
 
-elif "卵" in items and "パン" in items:
-    print("おすすめ料理: フレンチトースト")
+def suggest_dish(ingredients):
+    """材料から料理とカロリーを返す"""
 
-elif "パスタ" in items and "ベーコン" in items:
-    print("おすすめ料理: カルボナーラ")
+    if "卵" in ingredients and "ご飯" in ingredients:
+        return "チャーハン", 550
 
-elif "じゃがいも" in items and "玉ねぎ" in items:
-    print("おすすめ料理: ポテトスープ")
+    elif "卵" in ingredients and "パン" in ingredients:
+        return "フレンチトースト", 400
 
-elif "鶏肉" in items and "玉ねぎ" in items:
-    print("おすすめ料理: 親子丼")
+    elif "パスタ" in ingredients and "ベーコン" in ingredients:
+        return "カルボナーラ", 700
 
-else:
-    print("おすすめ料理が見つかりませんでした")
+    elif "じゃがいも" in ingredients and "玉ねぎ" in ingredients:
+        return "ポテトスープ", 250
+
+    elif "鶏肉" in ingredients and "玉ねぎ" in ingredients:
+        return "親子丼", 600
+
+    else:
+        return "料理なし", 0
+
+
+def main():
+    ingredients = sys.argv[1:]
+
+    if len(ingredients) == 0:
+        print(
+            "使い方: system01.py 材料1 材料2 ...",
+            file=sys.stderr
+        )
+        sys.exit(1)
+
+    dish, calorie = suggest_dish(ingredients)
+
+    if calorie > 0:
+        print(f"おすすめ料理: {dish}")
+        print(f"推定カロリー: {calorie} kcal")
+    else:
+        print(dish)
+
+
+if __name__ == "__main__":
+    main()
