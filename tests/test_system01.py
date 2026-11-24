@@ -1,4 +1,4 @@
-from system01 import suggest_dish
+from system01.system01 import suggest_dish
 
 def test_fried_rice():
     assert suggest_dish(["卵", "ご飯"]) == "チャーハン"
