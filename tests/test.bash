@@ -11,27 +11,27 @@ ng () {
 res=0
 
 # 卵とご飯 → チャーハン
-out=$(echo "卵 ご飯" | python3 ../system01/system01.py)
+out=$(echo "卵 ご飯" | python3 ../system01/system01.py) || ng "$LINENO"
 [ "$out" = "$(printf 'おすすめ料理: チャーハン\n推定カロリー: 550 kcal')" ] || ng "$LINENO"
 
 # 卵とパン → フレンチトースト
-out=$(echo "卵 パン" | python3 ../system01/system01.py)
+out=$(echo "卵 パン" | python3 ../system01/system01.py) || ng "$LINENO"
 [ "$out" = "$(printf 'おすすめ料理: フレンチトースト\n推定カロリー: 400 kcal')" ] || ng "$LINENO"
 
 # パスタとベーコン → カルボナーラ
-out=$(echo "パスタ ベーコン" | python3 ../system01/system01.py)
+out=$(echo "パスタ ベーコン" | python3 ../system01/system01.py) || ng "$LINENO"
 [ "$out" = "$(printf 'おすすめ料理: カルボナーラ\n推定カロリー: 700 kcal')" ] || ng "$LINENO"
 
 # じゃがいもと玉ねぎ → ポテトスープ
-out=$(echo "じゃがいも 玉ねぎ" | python3 ../system01/system01.py)
+out=$(echo "じゃがいも 玉ねぎ" | python3 ../system01/system01.py) || ng "$LINENO"
 [ "$out" = "$(printf 'おすすめ料理: ポテトスープ\n推定カロリー: 250 kcal')" ] || ng "$LINENO"
 
 # 鶏肉と玉ねぎ → 親子丼
-out=$(echo "鶏肉 玉ねぎ" | python3 ../system01/system01.py)
+out=$(echo "鶏肉 玉ねぎ" | python3 ../system01/system01.py) || ng "$LINENO"
 [ "$out" = "$(printf 'おすすめ料理: 親子丼\n推定カロリー: 600 kcal')" ] || ng "$LINENO"
 
 # 該当する料理がない場合
-out=$(echo "卵 牛乳" | python3 ../system01/system01.py)
+out=$(echo "卵 牛乳" | python3 ../system01/system01.py) || ng "$LINENO"
 [ "$out" = "$(printf 'おすすめ料理: 料理なし\n推定カロリー: 0 kcal')" ] || ng "$LINENO"
 
 # 空入力の場合はエラー終了することを確認
