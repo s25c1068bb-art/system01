@@ -1,6 +1,7 @@
+
 #!/usr/bin/env python3
 
-# SPDX-FileCopyrightText: 2026 Yuudai
+# SPDX-FileCopyrightText: 2026 Yudai Tsutsumida
 # SPDX-License-Identifier: BSD-3-Clause
 
 import sys
@@ -29,22 +30,16 @@ def suggest_dish(ingredients):
 
 
 def main():
-    ingredients = sys.argv[1:]
+    ingredients = sys.stdin.read().split()
 
     if len(ingredients) == 0:
-        print(
-            "使い方: system01.py 材料1 材料2 ...",
-            file=sys.stderr
-        )
+        print("材料を入力してください", file=sys.stderr)
         sys.exit(1)
 
     dish, calorie = suggest_dish(ingredients)
 
-    if calorie > 0:
-        print(f"おすすめ料理: {dish}")
-        print(f"推定カロリー: {calorie} kcal")
-    else:
-        print(dish)
+    print(f"おすすめ料理: {dish}")
+    print(f"推定カロリー: {calorie} kcal")
 
 
 if __name__ == "__main__":
